@@ -1,0 +1,14 @@
+@use '../../scss/common';
+@use '../../scss/data';
+
+:host {
+  @include common.layout-block();
+}
+
+._main-data {
+  @include data.layout-data-list();
+}
+
+._autobiography {
+  white-space: pre-wrap;
+}

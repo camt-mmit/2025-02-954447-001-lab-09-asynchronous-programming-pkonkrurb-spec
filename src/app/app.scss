@@ -1,0 +1,55 @@
+@use '../scss/common';
+
+:host {
+  @layer {
+    & {
+      --_max-width: 640px;
+      --_gap: 8px;
+      --_logo-height: 64px;
+    }
+  }
+
+  @include common.layout-block();
+
+  padding-bottom: var(--_gap);
+}
+
+.-cmp-main-content {
+  @include common.layout-block();
+
+  width: min(var(--_max-width), 100%);
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  @include common.layout-block();
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  row-gap: var(--_gap);
+
+  padding-top: var(--_gap);
+
+  h1 {
+    margin: 0px;
+  }
+
+  .angular-logo {
+    max-height: var(--_logo-height);
+  }
+}
+
+.-cmp-title {
+  @include common.layout-block();
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: var(--_gap);
+}

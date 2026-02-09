@@ -1,0 +1,80 @@
+<fieldset [disabled]="form().disabled()" class="_main-form">
+  <div class="_info-form">
+    <label>
+      <b>Student ID</b>
+      <input type="text" inputmode="numeric" [formField]="form.studentId" />
+    </label>
+
+    <label>
+      <b>Firstname</b>
+      <input type="text" [formField]="form.firstname" />
+    </label>
+
+    <label>
+      <b>Lastname</b>
+      <input type="text" [formField]="form.lastname" />
+    </label>
+
+    <label>
+      <b>Age</b>
+      <input type="number" [formField]="form.age" />
+    </label>
+
+    <label>
+      <b>Autobiography</b>
+      <textarea rows="5" [formField]="form.autobiography"></textarea>
+    </label>
+  </div>
+
+  <fieldset [disabled]="form.friends().disabled()" class="_friends-form">
+    <legend>
+      Friends
+      <span class="app-cl-number"
+        >({{ form.friends().metadata(friendsCountKey)!() | number }})</span
+      >
+      <button type="button" (click)="addFriend()" class="app-cmp-button">
+        <i class="material-symbols-outlined">add</i>
+      </button>
+    </legend>
+    @for (friend of form.friends; track friend) {
+      <div class="_friend-container">
+        <button
+          type="button"
+          [disabled]="$first"
+          (click)="moveFriend($index, -1)"
+          class="app-cmp-button"
+        >
+          <i class="material-symbols-outlined">arrow_upward_alt</i>
+        </button>
+
+        <button
+          type="button"
+          [disabled]="$last"
+          (click)="moveFriend($index, 1)"
+          class="app-cmp-button"
+        >
+          <i class="material-symbols-outlined">arrow_downward_alt</i>
+        </button>
+
+        <span class="_friend-input">
+          <label>
+            <b>
+              Friend
+              <span class="_friend-title-no app-cl-number">{{ $index + 1 }}</span>
+            </b>
+            <input type="text" [formField]="friend.value" />
+          </label>
+        </span>
+
+        <button
+          type="button"
+          [disabled]="$count === 1"
+          (click)="removeFriend($index)"
+          class="app-cmp-button app-cl-warn"
+        >
+          <i class="material-symbols-outlined">delete_forever</i>
+        </button>
+      </div>
+    }
+  </fieldset>
+</fieldset>

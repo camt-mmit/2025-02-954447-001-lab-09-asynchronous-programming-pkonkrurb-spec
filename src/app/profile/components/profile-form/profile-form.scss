@@ -1,0 +1,73 @@
+@use '../../scss/common';
+@use '../../scss/data';
+
+:host {
+  @include common.layout-block();
+}
+
+._main-form {
+  @include common.layout-block();
+}
+
+._info-form {
+  @include data.layout-data-form($label-width: 15ch);
+
+  width: 100%;
+}
+
+._friends-form {
+  @layer {
+    & {
+      --_margin-top: var(--app-row-gap);
+      --_legend-column-gap: var(--app-column-gap);
+      --_body-gap: var(--app-row-gap);
+      --_border-color: var(--app-on-surface-color);
+    }
+  }
+
+  margin-top: var(--_margin-top);
+  border: 1px solid var(--_border-color);
+
+  & > legend {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: var(--_legend-column-gap);
+
+    margin-bottom: var(--_body-gap);
+  }
+
+  & > ._friend-container {
+    @include common.layout-block();
+
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    & > ._friend-input {
+      @include common.layout-block();
+      @include data.layout-data-form($label-width: 10ch);
+
+      flex: 1 0 auto;
+
+      & > label {
+        height: 100%;
+
+        & > b {
+          margin-left: 1ch;
+
+          & + * {
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    ._friend-title-no {
+      display: inline-block;
+      width: 3ch;
+      padding-left: 1ch;
+      margin-left: auto;
+    }
+  }
+}

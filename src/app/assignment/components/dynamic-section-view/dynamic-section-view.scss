@@ -1,0 +1,39 @@
+@use '../../scss/common';
+@use '../../scss/data';
+
+:host {
+  @include common.layout-block();
+}
+
+._items-title {
+  text-align: center;
+}
+
+._item-container {
+  ._item-title-no {
+    display: inline-block;
+
+    width: 3ch;
+    padding-left: 1ch;
+    margin-right: auto;
+  }
+}
+
+._values-container {
+  @include data.layout-data-list();
+
+  padding-left: 64px;
+
+  ._value-title-no {
+    display: inline-block;
+
+    width: 3ch;
+    padding-left: 1ch;
+    margin-right: auto;
+  }
+
+  ._values-total {
+    font-weight: bold;
+    text-decoration: underline double;
+  }
+}

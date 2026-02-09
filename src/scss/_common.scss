@@ -1,0 +1,17 @@
+@mixin set-block() {
+  box-sizing: border-box;
+  display: block;
+
+  margin: 0px;
+  padding: 0px;
+
+  border: none;
+}
+
+@mixin layout-block() {
+  @layer {
+    & {
+      @include set-block();
+    }
+  }
+}

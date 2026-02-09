@@ -1,0 +1,10 @@
+@use '../../scss/common';
+@use '../../scss/message';
+
+:host {
+  @include common.layout-block();
+}
+
+._message {
+  @include message.layout-message();
+}

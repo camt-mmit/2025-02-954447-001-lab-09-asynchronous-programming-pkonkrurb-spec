@@ -1,0 +1,25 @@
+<article class="_items-container">
+  <h2 class="_items-title">Sections</h2>
+
+  @for (items of data(); track items) {
+    <section class="_item-container">
+      <h3>
+        Section
+        <span class="_item-title-no app-cl-number">{{ $index + 1 }}</span>
+      </h3>
+
+      <dl class="_values-container">
+        @for (value of items; track $index) {
+          <dt>
+            number
+            <span class="_value-title-no app-cl-number">{{ $index + 1 }}</span>
+          </dt>
+          <dd class="app-cl-number">{{ value | number }}</dd>
+        }
+
+        <dt>Result</dt>
+        <dd class="_values-total app-cl-number">{{ totals()[$index] | number }}</dd>
+      </dl>
+    </section>
+  }
+</article>

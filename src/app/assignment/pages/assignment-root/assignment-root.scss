@@ -1,0 +1,5 @@
+@use '../../scss/common';
+
+:host {
+  @include common.layout-block();
+}

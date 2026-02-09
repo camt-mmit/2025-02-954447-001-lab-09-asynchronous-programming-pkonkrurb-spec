@@ -1,0 +1,59 @@
+@mixin layout-data-form($label-width) {
+  @layer {
+    & {
+      --_row-gap: var(--app-row-gap);
+    }
+  }
+
+  display: inline-flex;
+  flex-direction: column;
+  row-gap: var(--_row-gap);
+
+  & > label {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+
+    & > b {
+      width: $label-width;
+      margin-right: 1ch;
+
+      & + * {
+        box-sizing: border-box;
+        flex: 1 0 auto;
+      }
+    }
+  }
+}
+
+@mixin layout-data-list {
+  @layer {
+    & {
+      --_column-gap: var(--app-column-gap);
+      --_row-gap: var(--app-row-gap);
+    }
+  }
+
+  &:is(dl) {
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: auto 1fr;
+
+    column-gap: var(--_column-gap);
+    row-gap: var(--_row-gap);
+
+    & > dt {
+      font-weight: bold;
+    }
+
+    & > dd {
+      margin-left: 0px;
+
+      @layer {
+        & {
+          text-align: justify;
+        }
+      }
+    }
+  }
+}

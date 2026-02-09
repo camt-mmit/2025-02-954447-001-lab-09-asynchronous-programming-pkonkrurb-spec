@@ -1,0 +1,74 @@
+<fieldset [disabled]="form().disabled()" class="_main-form">
+  <legend>
+    <button type="button" (click)="addItem()" class="app-cmp-button">
+      <i class="material-symbols-outlined">add</i>
+      Section
+    </button>
+  </legend>
+
+  <div class="_items-form">
+    @for (item of form; track item) {
+      <fieldset class="_item-container">
+        <legend>
+          <button type="button" (click)="addValue(item)" class="app-cmp-button">
+            <i class="material-symbols-outlined">add</i>
+            Number
+          </button>
+          <span>
+            Section
+            <span class="_item-titel-no app-cl-number">{{ $index + 1 }}</span>
+          </span>
+          <button
+            type="button"
+            [disabled]="$count === 1"
+            (click)="removeItem($index)"
+            class="app-cmp-button app-cl-warn app-cl-filled"
+          >
+            <i class="material-symbols-outlined">delete_forever</i>
+          </button>
+        </legend>
+
+        <div class="_values-form">
+          @for (value of item; track value) {
+            <div class="_value-container">
+              <span class="_value-input">
+                <label>
+                  <b>
+                    Number
+                    <span class="_value-title-no app-cl-number">{{ $index + 1 }}</span>
+                  </b>
+                  <input type="number" [formField]="value" />
+                </label>
+              </span>
+
+              <button
+                type="button"
+                [disabled]="$count === 1"
+                (click)="removeValue(item, $index)"
+                class="app-cmp-button app-cl-warn"
+              >
+                <i class="material-symbols-outlined">delete_forever</i>
+              </button>
+            </div>
+          }
+          <div class="_value-container">
+            <span class="_value-input">
+              <label>
+                <b>Result</b>
+                <output class="app-cl-number">{{ item().metadata(totalKey)!() | number }}</output>
+              </label>
+            </span>
+
+            <button
+              type="button"
+              aria-hidden="true"
+              class="app-cmp-button app-cl-warn app-cl-hidden"
+            >
+              <i class="material-symbols-outlined">delete_forever</i>
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    }
+  </div>
+</fieldset>
